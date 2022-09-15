@@ -1,4 +1,4 @@
-export default function checkout(){
+export default function signIn(){
     return(
     <div>
 

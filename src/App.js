@@ -1,21 +1,31 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import home from './components/home/home';
-import signIn from './components/signIn/signIn';
-import signUp from './components/signUp/signUp'
-import cart from './components/cart/cart';
-import checkout from './components/checkout/checkout';
+import {useState} from 'react';
+import ContextUser from './Contexts/ContextUser';
+import Home from './components/home/Home';
+import SignIn from './components/signIn/SignIn';
+import SignUp from './components/signUp/SignUp'
+import Cart from './components/cart/Cart';
+import Checkout from './components/checkout/Checkout';
+
+
 function App() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+
   return (
+  <ContextUser.Provider value={{email, setEmail, password, setPassword, name, setName}}>
   <BrowserRouter>
     <Routes>
-      <Route path='/' element={home}/>
-      <Route path='/sign-in' element={signIn}/>
-      <Route path='/sign-up' element={signUp}/>
-      <Route path='/checkout' element={checkout}/>
-      <Route path='/cart' element={cart}/>
+      <Route path='/' element={<Home/>}/>
+      <Route path='/sign-in' element={<SignIn/>}/>
+      <Route path='/sign-up' element={<SignUp/>}/>
+      <Route path='/checkout' element={<Checkout/>}/>
+      <Route path='/cart' element={<Cart/>}/>
     </Routes>
   </BrowserRouter>
+  </ContextUser.Provider>
   );
-}
+};
 
 export default App;

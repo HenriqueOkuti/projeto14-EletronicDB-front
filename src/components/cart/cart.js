@@ -1,4 +1,4 @@
-export default function cart(){
+export default function Cart(){
     return(
     <div>
 

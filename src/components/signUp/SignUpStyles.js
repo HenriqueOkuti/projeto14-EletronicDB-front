@@ -9,8 +9,8 @@ export default function SignUpstyledForm({children}){
 };
 
 const Formstyled = styled.div`
-    margin-top: 30px;
     width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,10 +20,10 @@ const Formstyled = styled.div`
         border-radius: 5px;
         margin-bottom: 5px;
         font-weight: 400;
-        font-size: 19.976px;
+        font-size: 20px;
         line-height: 25px;
         color: #ff6e00;
-        padding-left: 11px;
+        padding-left: 18px;
     }
     .play{
         height: 45px;
@@ -34,7 +34,7 @@ const Formstyled = styled.div`
         background-color: #ff6e00;
         color: #FFFFFF;
         font-weight: 400;
-        font-size: 20.976px;
+        font-size: 21px;
         line-height: 26px;
         margin-bottom: 25px;
     }
@@ -47,7 +47,7 @@ const Formstyled = styled.div`
 
     a{
         font-weight: 400;
-        font-size: 13.976px;
+        font-size: 14px;
         line-height: 17px;  
         color: #ff6e00;
     }

@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import ContextUser from "../../Contexts/ContextUser";
 import { Link } from 'react-router-dom';
+import SignUpstyledForm from "./SignUpStyles";
 
 export default function SignUpForm(){
     const {email, setEmail} = useContext(ContextUser);
@@ -32,10 +33,13 @@ export default function SignUpForm(){
             const request = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up", cadastro);
             request.then(()=> sucess());
             request.catch(()=> error());*/
+        } else {
+            alert("Por favor preencha os campos novamente");
         };
     };
 
     return(
+        <SignUpstyledForm>
         <form onSubmit={handleForm}>
             <div className="inputs">
                 <div className="input">
@@ -53,11 +57,12 @@ export default function SignUpForm(){
                     cadastre-se
                 </div>
                 <div className="link">
-                    <Link to={"/"}>
+                    <Link to={"/sign-in"}>
                         Já tem uma conta? Faça login!
                     </Link>
                 </div>
             </div>
 	    </form>
+        </SignUpstyledForm>
     );
 };

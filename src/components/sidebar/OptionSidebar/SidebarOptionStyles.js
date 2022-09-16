@@ -9,11 +9,8 @@ export const Container = styled.div`
   padding-left: 1.563rem;
   cursor: pointer;
   margin: 0.938rem 0 0 0;
-  > svg {
-    margin: 0 1.25rem;
-  }
   &:hover {
     background-color: #FFEEAF;
-  }
+  };
 `;
 

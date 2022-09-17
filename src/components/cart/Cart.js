@@ -23,7 +23,7 @@ import {
   DeleteButtons,
   ButtonColor,
   ItemName,
-} from './CartStyles';
+} from './cartStyles';
 import { MdOutlineRemoveShoppingCart } from 'react-icons/md';
 import { IoChevronBackOutline } from 'react-icons/io5';
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';

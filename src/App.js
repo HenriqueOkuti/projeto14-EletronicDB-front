@@ -4,6 +4,7 @@ import signIn from './components/signIn/signIn';
 import signUp from './components/signUp/signUp';
 import Cart from './components/cart/cart';
 import Checkout from './components/checkout/checkout';
+import Order from './components/order/order';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path='/sign-up' element={signUp} />
         <Route path='/checkout' element={<Checkout />} />
         <Route path='/cart' element={<Cart />} />
+        <Route path='/order' element={<Order />} />
       </Routes>
     </BrowserRouter>
   );

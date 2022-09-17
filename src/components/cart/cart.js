@@ -1,29 +1,31 @@
 import {
-  Background,
-  CartContainer,
   CartImage,
   HomeButton,
-  LowerContainer,
-  PageContainer,
-  PriceContainer,
   EmptyText,
-  PageHeader,
-  HeaderOptions,
-  HeaderItem,
-  ItemContainer,
-  ItemImage,
-  InfoContainer,
   CancelItem,
-  QuantityContainer,
-  DescriptionContainer,
   PromptBackground,
   DeletePrompt,
   DeleteText,
   DeleteItem,
   DeleteButtons,
   ButtonColor,
-  ItemName
+  ItemName,
 } from './cartStyles';
+import {
+  Background,
+  CartContainer,
+  DescriptionContainer,
+  HeaderItem,
+  HeaderOptions,
+  InfoContainer,
+  ItemContainer,
+  ItemImage,
+  LowerContainer,
+  PageContainer,
+  PageHeader,
+  PriceContainer,
+  QuantityContainer,
+} from '../../shared/CartCheckoutStyles';
 import { MdOutlineRemoveShoppingCart } from 'react-icons/md';
 import { IoChevronBackOutline } from 'react-icons/io5';
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
@@ -32,6 +34,7 @@ import { TiDelete } from 'react-icons/ti';
 import { HiCheck, HiX } from 'react-icons/hi';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Cart() {
   const [showprompt, setShowprompt] = useState([false]);
@@ -39,6 +42,8 @@ export default function Cart() {
   const [total, setTotal] = useState(0);
   const [update, setUpdate] = useState(false);
   const [hasItems, setHasItems] = useState(false);
+
+  const navigate = useNavigate();
 
   //plug axios here:
   function getUserData() {
@@ -89,7 +94,7 @@ export default function Cart() {
             <HeaderOptions>
               <HeaderItem>
                 <IoChevronBackOutline
-                  onClick={() => console.log('navigate HOME')}
+                  onClick={() => navigate('/')}
                 ></IoChevronBackOutline>
               </HeaderItem>
               <HeaderItem center={true}>Cart</HeaderItem>
@@ -137,10 +142,13 @@ export default function Cart() {
               onClick={() => {
                 console.log('Redirect CHECKOUT');
                 console.log(
-                  userProducts.filter((e) =>
+                  (userProducts = userProducts.filter((e) =>
                     e.hasOwnProperty('ignore') ? 0 : e
-                  )
+                  ))
                 );
+                navigate('/checkout', {
+                  state: { list: userProducts, value: total },
+                });
               }}
             >
               Checkout
@@ -168,7 +176,7 @@ export default function Cart() {
           <LowerContainer>
             <HomeButton
               onClick={() => {
-                console.log('Redirect HOME');
+                navigate('/');
               }}
             >
               Home

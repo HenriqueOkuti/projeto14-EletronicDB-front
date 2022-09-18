@@ -49,7 +49,7 @@ const PageContainer = styled.div`
 
 const CartContainer = styled.div`
   margin: 20px 0 0 0;
-  width: ${(props) => (props.checkout ? '70vw' : '90vw')};
+  width: ${(props) => (props.checkout ? '80vw' : '90vw')};
   height: 55vh;
   overflow-y: scroll;
   background-color: #ffffff;
@@ -62,7 +62,7 @@ const CartContainer = styled.div`
 const PriceContainer = styled.div`
   margin: 10px 0 10px 0;
   height: 45px;
-  width: ${(props) => (props.checkout ? '78%' : '100%')};
+  width: ${(props) => (props.checkout ? '90%' : '100%')};
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-content: center;
@@ -100,7 +100,7 @@ const ItemContainer = styled.div`
   margin: 10px 0 10px 0;
   display: flex;
   min-height: 110px;
-  width: ${(props) => (props.checkout ? '80%' : '95%')};
+  width: ${(props) => (props.checkout ? '90%' : '95%')};
   color: #979797;
   background-color: #ffeeaf;
   border-radius: 5px;

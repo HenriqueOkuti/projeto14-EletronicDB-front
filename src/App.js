@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Order from './components/order/order';
 import React, { useState } from 'react';
 import Home from './components/home/Home';
 import SignIn from './components/signIn/SignIn';
@@ -28,6 +29,7 @@ function App() {
           <Route path='/sign-up' element={<SignUp />} />
           <Route path='/checkout' element={<Checkout />} />
           <Route path='/cart' element={<Cart />} />
+          <Route path='/order' element={<Order />} />
           <Route path='/produtos/type1' element={<Cart />} />
           <Route path='/produtos/type2' element={<Cart />} />
           <Route path='/produtos/type3' element={<Cart />} />

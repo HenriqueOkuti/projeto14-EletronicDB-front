@@ -1,21 +1,8 @@
 import {
-  Background,
-  CartContainer,
   CartImage,
   HomeButton,
-  LowerContainer,
-  PageContainer,
-  PriceContainer,
   EmptyText,
-  PageHeader,
-  HeaderOptions,
-  HeaderItem,
-  ItemContainer,
-  ItemImage,
-  InfoContainer,
   CancelItem,
-  QuantityContainer,
-  DescriptionContainer,
   PromptBackground,
   DeletePrompt,
   DeleteText,
@@ -23,7 +10,21 @@ import {
   DeleteButtons,
   ButtonColor,
   ItemName,
-} from './CartStyles';
+  Background,
+  CartContainer,
+  DescriptionContainer,
+  HeaderItem,
+  HeaderOptions,
+  InfoContainer,
+  ItemContainer,
+  ItemImage,
+  LowerContainer,
+  PageContainer,
+  PageHeader,
+  PriceContainer,
+  QuantityContainer,
+} from '../../shared/CartCheckoutStyles';
+
 import { MdOutlineRemoveShoppingCart } from 'react-icons/md';
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 import { TiDelete } from 'react-icons/ti';
@@ -95,7 +96,7 @@ export default function Cart() {
             <HeaderOptions>
               <HeaderItem>
                 <IoChevronBackOutline
-                  onClick={() => console.log('navigate HOME')}
+                  onClick={() => navigate('/')}
                 ></IoChevronBackOutline>
               </HeaderItem>
               <HeaderItem center={true}>Cart</HeaderItem>
@@ -177,7 +178,7 @@ export default function Cart() {
           <LowerContainer>
             <HomeButton
               onClick={() => {
-                console.log('Redirect HOME');
+                navigate('/');
               }}
             >
               Home

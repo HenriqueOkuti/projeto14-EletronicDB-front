@@ -47,7 +47,12 @@ export default function Cart() {
   }
 
   function handleSuccess(event) {
+    //Comment line bellow if event is non-null
     setUserProducts(generateData);
+
+    //if successfully:
+    //setUserProducts(event.data)
+
     setHasItems(!userProducts[0] ? true : searchIgnore());
     setTotal(calculateTotal(userProducts));
   }
@@ -85,7 +90,7 @@ export default function Cart() {
       <>
         <Background></Background>
         <PageContainer>
-          <PageHeader>
+          {/* <PageHeader>
             <HeaderOptions>
               <HeaderItem>
                 <IoChevronBackOutline
@@ -99,7 +104,7 @@ export default function Cart() {
                 ></FiTrash>
               </HeaderItem>
             </HeaderOptions>
-          </PageHeader>
+          </PageHeader> */}
           {showprompt[0] ? (
             <>
               {promptDelete(

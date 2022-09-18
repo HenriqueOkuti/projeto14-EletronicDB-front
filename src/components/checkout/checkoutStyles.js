@@ -7,7 +7,7 @@ const HomeButton = styled.button`
   height: ${(props) => (props.hasItems ? '65px' : '45px')};
   font-size: 20px;
   color: #ffffff;
-  background-color: #7fbcd2;
+  background-color: #ff6e00;
   display: flex;
   align-items: center;
   justify-content: center;

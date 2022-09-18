@@ -10,8 +10,6 @@ import {
   DeleteButtons,
   ButtonColor,
   ItemName,
-} from './cartStyles';
-import {
   Background,
   CartContainer,
   DescriptionContainer,
@@ -26,7 +24,7 @@ import {
   PriceContainer,
   QuantityContainer,
 } from '../../shared/CartCheckoutStyles';
-} from './CartStyles';
+
 import { MdOutlineRemoveShoppingCart } from 'react-icons/md';
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 import { TiDelete } from 'react-icons/ti';

@@ -15,7 +15,7 @@ import {
 } from '../../shared/CartCheckoutStyles';
 import { IoChevronBackOutline } from 'react-icons/io5';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { HomeButton } from './checkoutStyles';
+import { HomeButton } from './CheckoutStyles';
 
 export default function Checkout() {
   const navigate = useNavigate();
@@ -32,7 +32,7 @@ export default function Checkout() {
     <>
       <Background></Background>
       <PageContainer>
-        <PageHeader>
+        {/* <PageHeader>
           <HeaderOptions>
             <HeaderItem>
               <IoChevronBackOutline
@@ -41,7 +41,7 @@ export default function Checkout() {
             </HeaderItem>
             <HeaderItem>Checkout</HeaderItem>
           </HeaderOptions>
-        </PageHeader>
+        </PageHeader> */}
         <CartContainer checkout={true}>
           {order.list.map((e, i) =>
             !e.hasOwnProperty('ignore') ? (

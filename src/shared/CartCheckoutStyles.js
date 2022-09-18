@@ -6,7 +6,7 @@ const Background = styled.div`
   width: 100vw;
   min-height: 100vh;
   height: 100%;
-  background-color: #e1ffee;
+  //background-color: #e1ffee;
   box-sizing: border-box;
   overflow-y: auto;
 `;
@@ -25,10 +25,10 @@ const HomeButton = styled.button`
   margin: 0 0 0 0;
   border-radius: 5px;
   width: ${(props) => (props.hasItems ? '90vw' : '60vw')};
-  height: ${(props) => (props.hasItems ? '65px' : '45px')};
+  height: ${(props) => (props.hasItems ? '50px' : '45px')};
   font-size: 20px;
   color: #ffffff;
-  background-color: #7fbcd2;
+  background-color: #ff6e00;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -50,7 +50,7 @@ const PageContainer = styled.div`
 const CartContainer = styled.div`
   margin: 20px 0 0 0;
   width: ${(props) => (props.checkout ? '70vw' : '90vw')};
-  height: 60vh;
+  height: 55vh;
   overflow-y: scroll;
   background-color: #ffffff;
   display: flex;

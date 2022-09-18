@@ -6,7 +6,7 @@ import Perfil from './perfil/Perfil';
 import { Link } from 'react-router-dom';
 
 
-const Navbar = () => {
+const Navbar = ({online, setOnline}) => {
     const [sidebar, setSidebar] = useState(false);
     const [perfil, setPerfil] = useState(false);
 
@@ -23,17 +23,23 @@ const Navbar = () => {
         setPerfil(!perfil);
     }
 
+
     return (
         <Container>
             <FaBars onClick={showSidebar}></FaBars>
             {sidebar && <Sidebar active={setSidebar}/>}
             <h3>EletronicDB</h3>
             <Div>
+                {online ? 
                 <Link to={"/cart"}>
                     <FaCartPlus ></FaCartPlus>
+                </Link>: 
+                <Link to={"/"} onClick={() =>alert("Faça login para acessar o carrinho")}>
+                    <FaCartPlus ></FaCartPlus>
                 </Link>
+                }
                 <FaUser onClick={showPerfil}></FaUser>
-                {perfil && <Perfil active={setPerfil}/>}
+                {perfil && <Perfil active={setPerfil} online={online} setOnline={setOnline}/>}
             </Div>
         </Container>
     )

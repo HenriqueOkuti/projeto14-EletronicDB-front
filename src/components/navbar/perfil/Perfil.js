@@ -5,11 +5,15 @@ import { FaUser } from 'react-icons/fa'
 
 import PerfilItem from './OptionPerfil/perfilItem'
 
-const Perfil = ({ active }) => {
-    const [online, setOnline] = useState(false)
+const Perfil = ({ active, online, setOnline }) => {
+    
     const closePerfil = () => {
-    active(false)
+      if(online){
+        setOnline(false)
+      }
+      active(false)
     }
+
 
   return (
     <Container perfil={active}> 

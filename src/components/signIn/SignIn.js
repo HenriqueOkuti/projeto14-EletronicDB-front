@@ -1,18 +1,18 @@
-import SignUpForm from "./SignUpForm"; 
-import styled from "styled-components";
+import SignInForm from './SignInForm';
+import styled from 'styled-components';
 
-export default function SignUp(){
+export default function SignIn(){
     return(
-    <AllStyleSignUp>
+    <AllStyleSignIn>
         <div className="Logo">
             eletronicDB
         </div>
-        <SignUpForm/>
-    </AllStyleSignUp>
+        <SignInForm/>
+    </AllStyleSignIn>
     );
 };
 
-const AllStyleSignUp = styled.div`
+const AllStyleSignIn = styled.div`
     width: 100%;
     height: 100%;
     display: flex;

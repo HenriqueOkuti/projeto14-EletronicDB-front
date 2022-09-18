@@ -26,10 +26,9 @@ import {
   PriceContainer,
   QuantityContainer,
 } from '../../shared/CartCheckoutStyles';
+} from './CartStyles';
 import { MdOutlineRemoveShoppingCart } from 'react-icons/md';
-import { IoChevronBackOutline } from 'react-icons/io5';
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
-import { FiTrash } from 'react-icons/fi';
 import { TiDelete } from 'react-icons/ti';
 import { HiCheck, HiX } from 'react-icons/hi';
 import { useEffect } from 'react';
@@ -52,7 +51,12 @@ export default function Cart() {
   }
 
   function handleSuccess(event) {
+    //Comment line bellow if event is non-null
     setUserProducts(generateData);
+
+    //if successfully:
+    //setUserProducts(event.data)
+
     setHasItems(!userProducts[0] ? true : searchIgnore());
     setTotal(calculateTotal(userProducts));
   }
@@ -90,7 +94,7 @@ export default function Cart() {
       <>
         <Background></Background>
         <PageContainer>
-          <PageHeader>
+          {/* <PageHeader>
             <HeaderOptions>
               <HeaderItem>
                 <IoChevronBackOutline
@@ -104,7 +108,7 @@ export default function Cart() {
                 ></FiTrash>
               </HeaderItem>
             </HeaderOptions>
-          </PageHeader>
+          </PageHeader> */}
           {showprompt[0] ? (
             <>
               {promptDelete(

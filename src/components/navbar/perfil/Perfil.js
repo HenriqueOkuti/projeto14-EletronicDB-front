@@ -13,7 +13,7 @@ const Perfil = ({ active, online, setOnline }) => {
         localStorage.removeItem('token');
         window.location.reload()
       }
-
+      active(false);
     }
 
 

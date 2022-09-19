@@ -20,8 +20,9 @@ const AllStyleSignUp = styled.div`
     justify-content: center;
     align-items: center;
     .Logo{
+        font-family: 'Saira Stencil One', cursive;
         margin: 50px 0 30px 0;
         font-size: 35px;
-        color: #ff6e00;
+        color: #134d60;
     };
 `;

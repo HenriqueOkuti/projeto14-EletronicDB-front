@@ -14,7 +14,7 @@ import {
 } from '../../shared/CartCheckoutStyles';
 import { IoChevronBackOutline } from 'react-icons/io5';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { HomeButton, QuantityContainer } from './CheckoutStyles';
+import { HomeButton, QuantityContainer } from './checkoutStyles';
 
 export default function Checkout() {
   const navigate = useNavigate();

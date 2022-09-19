@@ -5,7 +5,7 @@ export const Container = styled.div`
     display: flex;
     background-color: #D9D9D9;
     box-shadow: 0 0 1.25rem 0.188rem;
-    font-family: 'Raleway', sans-serif;
+    
     
     >svg{
         position:fixed;
@@ -21,7 +21,6 @@ export const Container = styled.div`
         color: black;
         font-size: 2rem;
         font-weight: bold;
-        font-family: 'Times New Roman', Times, serif;
         margin-top: 1.625rem;
         margin-left: auto;
         margin-right: auto;

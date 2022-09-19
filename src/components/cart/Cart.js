@@ -32,28 +32,36 @@ import { HiCheck, HiX } from 'react-icons/hi';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export default function Cart() {
   const [showprompt, setShowprompt] = useState([false]);
-  let [userProducts, setUserProducts] = useState(generateData());
+  let [userProducts, setUserProducts] = useState([]);
   const [total, setTotal] = useState(0);
   const [update, setUpdate] = useState(false);
   const [hasItems, setHasItems] = useState(false);
-
+  const token = localStorage.getItem('token');
   const navigate = useNavigate();
 
   //plug axios here:
   function getUserData() {
-    //  handleFailure()
-    handleSuccess();
+    console.log('fetching...');
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    axios
+      .get('https://eletronicdb.herokuapp.com/cart', config)
+      .then(handleSuccess)
+      .catch(handleFailure);
   }
 
   function handleSuccess(event) {
+    console.log(event.data[0].cart);
     //Comment line bellow if event is non-null
-    setUserProducts(generateData);
+    //setUserProducts(generateData);
 
     //if successfully:
-    //setUserProducts(event.data)
+    setUserProducts(event.data[0].cart);
 
     setHasItems(!userProducts[0] ? true : searchIgnore());
     setTotal(calculateTotal(userProducts));
@@ -77,7 +85,6 @@ export default function Cart() {
     console.log('Error ocurred when getting user order');
     console.log(event);
   }
-
   useEffect(() => {
     getUserData();
   }, []);
@@ -222,7 +229,7 @@ function RenderProduct({ product, key, setShowprompt, setUpdate, update }) {
   return (
     <ItemContainer>
       <ItemImage
-        src={`${product.image}`}
+        src={`${product.image_main}`}
         alt=''
         onClick={() => console.log('redirect to item')}
       ></ItemImage>

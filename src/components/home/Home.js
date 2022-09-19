@@ -20,7 +20,7 @@ export default function Home() {
   const params = useParams();
 
   let type = params;
-
+  
   useEffect(() => {
     if (type) {
       setPageType(type.type);
@@ -33,6 +33,7 @@ export default function Home() {
 
     requisicao.then((res) => {
       setItems(res.data.slice(1, 200));
+      
     });
     requisicao.catch((event) => console.log(event));
   }, [product, items, pageType]);
@@ -89,8 +90,8 @@ function RenderCategories({ allProducts }) {
     <>
       <div></div>
       {shouldRenderNew ? <RenderLatest latestProducts={latestProducts} /> : ''}
-      {organizedList.map((e) => (
-        <RenderType productsType={e} shouldHaveLimit={shouldRenderNew} />
+      {organizedList.map((e, index) => (
+        <RenderType key={index} productsType={e} shouldHaveLimit={shouldRenderNew} />
       ))}
     </>
   );

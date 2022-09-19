@@ -6,7 +6,7 @@ import SignIn from './components/signIn/SignIn';
 import SignUp from './components/signUp/SignUp';
 import Cart from './components/cart/Cart';
 import Checkout from './components/checkout/Checkout';
-import Navbar from './components/sidebar/navbar/Navbar';
+import Navbar from './components/navbar/Navbar';
 import ContextUser from './Contexts/ContextUser';
 import styled from 'styled-components';
 

@@ -16,16 +16,11 @@ export default function Order() {
   const token = localStorage.getItem('token');
 
   const order = location.state?.order;
-
-  console.log(order);
-
   useEffect(() => {
-    console.log('arrived here');
     const config = {
       headers: { Authorization: `Bearer ${token}` },
       body: order.list,
     };
-    console.log(config);
     axios
       .post('https://eletronicdb.herokuapp.com/checkout', config.body, config)
       .then(() => setPlaced(!placed))
@@ -33,7 +28,6 @@ export default function Order() {
   }, []);
 
   if (placed) {
-    console.log('cleanup operation');
     const config = {
       headers: { Authorization: `Bearer ${token}` },
       body: [],

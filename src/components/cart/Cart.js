@@ -45,7 +45,6 @@ export default function Cart() {
 
   //plug axios here:
   function getUserData() {
-    console.log('fetching...');
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
@@ -56,11 +55,13 @@ export default function Cart() {
   }
 
   function handleSuccess(event) {
-    console.log(event.data[0].cart);
+    if (!event.data[0]) {
+      return;
+    }
     //Comment line bellow if event is non-null
     //setUserProducts(generateData);
 
-    //if successfully:
+    //if success:
     setUserProducts(event.data[0].cart);
 
     setHasItems(!userProducts[0] ? true : searchIgnore());
@@ -85,9 +86,26 @@ export default function Cart() {
     console.log('Error ocurred when getting user order');
     console.log(event);
   }
+
+  function updateData() {
+    if (!userProducts[0]) {
+      return;
+    }
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+      body: userProducts.filter((e) => (e.hasOwnProperty('ignore') ? '' : e)),
+    };
+    axios
+      .put('https://eletronicdb.herokuapp.com/cart', config.body, config)
+      .then(() => console.log('OK'))
+      .catch(handleFailure);
+  }
+
   useEffect(() => {
     getUserData();
   }, []);
+
+  useEffect(() => updateData(), [update, userProducts]);
 
   useEffect(() => {
     setHasItems(searchIgnore());
@@ -149,12 +167,6 @@ export default function Cart() {
             <HomeButton
               hasItems={true}
               onClick={() => {
-                console.log('Redirect CHECKOUT');
-                console.log(
-                  (userProducts = userProducts.filter((e) =>
-                    e.hasOwnProperty('ignore') ? 0 : e
-                  ))
-                );
                 navigate('/checkout', {
                   state: { list: userProducts, value: total },
                 });
@@ -222,7 +234,7 @@ function generateData() {
   return arrayNewProducts;
 }
 
-function RenderProduct({ product, key, setShowprompt, setUpdate, update }) {
+function RenderProduct({ product, setShowprompt, setUpdate, update }) {
   let [quantity, setQuantity] = useState(product.quantity);
   product.quantity = quantity;
 
@@ -283,7 +295,7 @@ function promptDelete(product, userProducts, setShowprompt, setUserProducts) {
       <DeletePrompt>
         <DeleteText>Do you wish to remove</DeleteText>
         <DeleteItem>
-          <ItemImage src={product.image} alt='' />
+          <ItemImage src={product.image_main} alt='' />
           <ItemName>{product.name}</ItemName>
         </DeleteItem>
         <DeleteButtons>

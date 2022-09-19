@@ -20,13 +20,10 @@ export default function Home() {
   const [pageType, setPageType] = useState('');
   const params = useParams();
 
-  console.log(pageType);
+  let type = params;
 
   useEffect(() => {
-    let type = params;
-
     if (type) {
-      console.log(type);
       setPageType(type.type);
       setProduct(type.type);
     }
@@ -39,17 +36,15 @@ export default function Home() {
       setItems(res.data.slice(1, 200));
     });
     requisicao.catch((event) => console.log(event));
-  }, [product, items]);
+  }, [product, items, pageType]);
 
   if (pageType) {
-    console.log(typeof items[0]?.type);
     const TypeNumber = pageType
       .split('')
       .filter((e) => (Number(e) ? Number(e) : ''))
       .join('');
 
     const newitems = items.filter((e) => (e.type === TypeNumber ? e : ''));
-    console.log(newitems);
     return (
       <PageContainer>
         <RenderCategories allProducts={newitems} />
@@ -86,7 +81,6 @@ export default function Home() {
 
 function RenderCategories({ allProducts }) {
   const lengthAll = allProducts.length;
-  console.log(lengthAll);
   const CONST_20 = 20;
   const CONST_50 = 50;
   const latestProducts = allProducts.slice(lengthAll - CONST_20);
@@ -176,7 +170,6 @@ function RenderItem({ product }) {
               if (!token) {
                 window.alert('Faça login para adicionar ao carrinho');
               } else {
-                console.log('add to cart: ', { ...product, quantity: 1 });
                 handleAddToCart({ ...product, quantity: 1 });
               }
             }}
@@ -192,7 +185,6 @@ function handleAddToCart(product) {
     headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
     body: product,
   };
-  console.log(config);
   axios
     .post('https://eletronicdb.herokuapp.com/cart', config.body, config)
     .then(() => window.alert('Item added to cart'))

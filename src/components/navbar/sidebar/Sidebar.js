@@ -15,10 +15,10 @@ const Sidebar = ({ active }) => {
       <FaTimes onClick={closeSidebar} />  
       <Content>
         <SidebarItem path={"/"} Text="Home" closeSidebar={closeSidebar}/>
-        <SidebarItem path={"/produtos/type1"} Text="Type 1" closeSidebar={closeSidebar}/>
-        <SidebarItem path={"/produtos/type2"} Text="Type 2" closeSidebar={closeSidebar}/>
-        <SidebarItem path={"/produtos/type3"} Text="Type 3" closeSidebar={closeSidebar}/>
-        <SidebarItem path={"/produtos/type4"} Text="Type 4" closeSidebar={closeSidebar}/>
+        <SidebarItem path={"/type1"} Text="Type 1" closeSidebar={closeSidebar}/>
+        <SidebarItem path={"/type2"} Text="Type 2" closeSidebar={closeSidebar}/>
+        <SidebarItem path={"/type3"} Text="Type 3" closeSidebar={closeSidebar}/>
+        <SidebarItem path={"/type4"} Text="Type 4" closeSidebar={closeSidebar}/>
       </Content>
     </Container>
 )

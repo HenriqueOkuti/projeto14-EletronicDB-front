@@ -15,6 +15,7 @@ import {
 import { IoChevronBackOutline } from 'react-icons/io5';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { HomeButton, QuantityContainer } from './checkoutStyles';
+import { useEffect } from 'react';
 
 export default function Checkout() {
   const navigate = useNavigate();
@@ -24,8 +25,11 @@ export default function Checkout() {
     list: location.state?.list,
     value: location.state?.value,
   };
-
-  console.log(order);
+  useEffect(() => {
+    if (!order.list) {
+      navigate('/cart');
+    }
+  }, []);
 
   return (
     <>
@@ -42,7 +46,7 @@ export default function Checkout() {
           </HeaderOptions>
         </PageHeader> */}
         <CartContainer checkout={true}>
-          {order.list.map((e, i) =>
+          {order?.list?.map((e, i) =>
             !e.hasOwnProperty('ignore') ? (
               <RenderProduct product={e} key={i} />
             ) : (
@@ -75,7 +79,7 @@ function RenderProduct({ product }, key) {
   return (
     <ItemContainer checkout={true}>
       <ItemImage
-        src={`${product.image}`}
+        src={`${product.image_main}`}
         alt=''
         onClick={() => console.log('redirect to item')}
       ></ItemImage>

@@ -16,7 +16,6 @@ import { TypeContainer, CancelItemMod } from './HomeStyles';
 export default function Home() {
   const [product, setProduct] = useState('');
   const [items, setItems] = useState([]);
-  const token = localStorage.getItem('token');
   const [pageType, setPageType] = useState('');
   const params = useParams();
 
@@ -27,7 +26,7 @@ export default function Home() {
       setPageType(type.type);
       setProduct(type.type);
     }
-  }, [pageType]);
+  }, [type]);
 
   useEffect(() => {
     const requisicao = axios.get('https://eletronicdb.herokuapp.com/mongo');

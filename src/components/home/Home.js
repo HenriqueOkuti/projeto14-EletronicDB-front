@@ -18,9 +18,7 @@ export default function Home() {
   const [items, setItems] = useState([]);
   const token = localStorage.getItem('token');
 
-
   const { type } = useParams();
-
 
   if (type) {
     setProduct(type);
@@ -62,14 +60,12 @@ export default function Home() {
   }
 }
 
-
 function RenderCategories({ allProducts }) {
   const lengthAll = allProducts.length;
   const CONST_20 = 20;
   const latestProducts = allProducts.slice(lengthAll - CONST_20);
   const organizedList = sortTypes(allProducts);
   console.log(organizedList);
-
 
   return (
     <>

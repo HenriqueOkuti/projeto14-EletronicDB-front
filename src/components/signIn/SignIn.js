@@ -5,7 +5,7 @@ export default function SignIn(){
     return(
     <AllStyleSignIn>
         <div className="Logo">
-            eletronicDB
+            EletronicDB
         </div>
         <SignInForm/>
     </AllStyleSignIn>
@@ -19,6 +19,7 @@ const AllStyleSignIn = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 6rem;
     .Logo{
         font-family: 'Saira Stencil One', cursive;
         margin: 50px 0 30px 0;

@@ -6,13 +6,17 @@ export const Container = styled.div`
     display: flex;
     background-color: #D9D9D9;
     box-shadow: 0 0 1.25rem 0.188rem;
+<<<<<<< HEAD
     position: fixed;
+=======
+    position:fixed;
+>>>>>>> 962ca69d76e2f0130e98dd614a641b81105599f8
     top:0;
     left:0;
     
     
     >svg{
-        position:fixed;
+        position:absolute;
         color: black;
         width: 1rem;
         height:1rem;
@@ -35,7 +39,7 @@ export const Container = styled.div`
 `
 
 export const Div = styled.div`
-        position:fixed;
+        position:absolute;
         display: flex;
         color: black;
         align-items:center;

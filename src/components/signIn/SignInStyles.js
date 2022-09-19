@@ -17,13 +17,13 @@ const Formstyled = styled.div`
     input{
         height: 45px;
         border: 1px solid #D5D5D5;
-        border-radius: 5px;
+        border-radius: 8px;
         margin-bottom: 5px;
         font-weight: 400;
         font-size: 20px;
         line-height: 25px;
-        color: #ff6e00;
-        padding-left: 18px;
+        color: #7fbcd2;
+        padding-left: 14px;
     }
     .play{
         height: 45px;
@@ -31,7 +31,7 @@ const Formstyled = styled.div`
         justify-content: center;
         align-items: center;
         border-radius: 5px;
-        background-color: #ff6e00;
+        background-color: #134d60;
         color: #FFFFFF;
         font-weight: 400;
         font-size: 21px;
@@ -49,6 +49,6 @@ const Formstyled = styled.div`
         font-weight: 400;
         font-size: 14px;
         line-height: 17px;  
-        color: #ff6e00;
+        color: #134d60;
     }
 `;

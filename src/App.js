@@ -8,6 +8,7 @@ import Cart from './components/cart/Cart';
 import Checkout from './components/checkout/Checkout';
 import Navbar from './components/sidebar/navbar/Navbar';
 import ContextUser from './Contexts/ContextUser';
+import styled from 'styled-components';
 
 import './shared/reset.css';
 import './App.css';
@@ -18,6 +19,7 @@ function App() {
   const [name, setName] = useState('');
 
   return (
+    <AllStyled>
     <ContextUser.Provider
       value={{ email, setEmail, password, setPassword, name, setName }}
     >
@@ -37,7 +39,12 @@ function App() {
         </Routes>
       </BrowserRouter>
     </ContextUser.Provider>
+    </AllStyled>
   );
 }
+
+const AllStyled = styled.div`
+font-family: 'Raleway', sans-serif;
+`;
 
 export default App;

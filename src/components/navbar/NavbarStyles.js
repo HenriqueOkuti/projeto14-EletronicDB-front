@@ -5,7 +5,8 @@ export const Container = styled.div`
     display: flex;
     background-color: #D9D9D9;
     box-shadow: 0 0 1.25rem 0.188rem;
-
+    font-family: 'Raleway', sans-serif;
+    
     >svg{
         position:fixed;
         color: black;

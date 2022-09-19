@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-export default function Cart(){
-    return(
-    <div>
-        
-    </div>
-=======
 import {
   CartImage,
   HomeButton,
@@ -184,7 +177,6 @@ export default function Cart() {
           </LowerContainer>
         </PageContainer>
       </>
->>>>>>> main
     );
   } else {
     return (

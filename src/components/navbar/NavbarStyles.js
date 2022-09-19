@@ -2,9 +2,13 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     height: 5rem;
+    width:100%;
     display: flex;
     background-color: #D9D9D9;
     box-shadow: 0 0 1.25rem 0.188rem;
+    position: fixed;
+    top:0;
+    left:0;
     
     
     >svg{
@@ -19,13 +23,13 @@ export const Container = styled.div`
 
     >h3{
         color: black;
-        font-size: 1.2rem;
+        font-size: 1.4rem;
         font-weight: bold;
         margin-top: 1.625rem;
         margin-left: auto;
         margin-right: auto;
-        justify-content:space-around;
         align-items:center;
+        font-family: 'Saira Stencil One', cursive;
     }
 
 `

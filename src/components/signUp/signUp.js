@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export default function SignUp() {
   return (
     <AllStyleSignUp>
-      <div className='Logo'>eletronicDB</div>
+      <div className='Logo'>EletronicDB</div>
       <SignUpForm />
     </AllStyleSignUp>
   );

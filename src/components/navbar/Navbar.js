@@ -10,6 +10,8 @@ const Navbar = ({online, setOnline}) => {
     const [sidebar, setSidebar] = useState(false);
     const [perfil, setPerfil] = useState(false);
 
+
+
     const showSidebar = () => {
         if(perfil){
             setPerfil(false)
@@ -30,7 +32,7 @@ const Navbar = ({online, setOnline}) => {
             {sidebar && <Sidebar active={setSidebar}/>}
             <h3>EletronicDB</h3>
             <Div>
-                {online ? 
+                {online? 
                 <Link to={"/cart"}>
                     <FaCartPlus ></FaCartPlus>
                 </Link>: 

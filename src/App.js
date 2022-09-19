@@ -13,11 +13,19 @@ import styled from 'styled-components';
 import './shared/reset.css';
 import './App.css';
 
+const token = localStorage.getItem('token');
+
 function App() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [online, setOnline] = useState(false);
+
+  if(token && !online){
+    setOnline(true)
+  }
+
+  
 
   return (
     <ContextUser.Provider
@@ -26,16 +34,16 @@ function App() {
       <BrowserRouter>
         <Navbar online={online} setOnline={setOnline}/>
         <Routes>
-          <Route path='/' element={<Home />} />
+          <Route path='/' element={<Home/>} />
           <Route path='/sign-in' element={<SignIn />} />
           <Route path='/sign-up' element={<SignUp />} />
           <Route path='/checkout' element={<Checkout />} />
-          <Route path='/cart' element={<Cart />} />
-          <Route path='/order' element={<Order />} />
-          <Route path='/produtos/type1' element={<Cart />} />
-          <Route path='/produtos/type2' element={<Cart />} />
-          <Route path='/produtos/type3' element={<Cart />} />
-          <Route path='/produtos/type4' element={<Cart />} />
+          <Route path='/cart' element={<Cart/>} />
+          <Route path='/order' element={<Order/>} />
+          <Route path='/type1' element={<Home/> }/>
+          <Route path='/type2' element={<Home/>} />
+          <Route path='/type3' element={<Home/>} />
+          <Route path='/type4' element={<Home/>} />
         </Routes>
       </BrowserRouter>
     </ContextUser.Provider>

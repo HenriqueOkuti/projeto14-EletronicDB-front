@@ -10,8 +10,8 @@ export const Container = styled.div`
     >svg{
         position:fixed;
         color: black;
-        width: 1.8rem;
-        height:1.8rem;
+        width: 1rem;
+        height:1rem;
         margin-top: 1.625rem;
         margin-left: 2rem;
         cursor: pointer;
@@ -19,7 +19,7 @@ export const Container = styled.div`
 
     >h3{
         color: black;
-        font-size: 2rem;
+        font-size: 1.2rem;
         font-weight: bold;
         margin-top: 1.625rem;
         margin-left: auto;
@@ -39,8 +39,8 @@ export const Div = styled.div`
         right: 2rem;
 
     svg{
-        width: 1.8rem;
-        height:1.8rem;
+        width: 1rem;
+        height:1rem;
         cursor: pointer;
         margin-left:2rem;
     }

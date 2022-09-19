@@ -9,7 +9,9 @@ const Perfil = ({ active, online, setOnline }) => {
     
     const closePerfil = () => {
       if(online){
-        setOnline(false)
+        setOnline(false);
+        localStorage.removeItem('token');
+        window.location.reload()
       }
       active(false)
     }

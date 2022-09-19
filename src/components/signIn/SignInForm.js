@@ -17,7 +17,8 @@ export default function FormSignin(){
     function sucess(res){
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("name", res.data.name);
-        navigate("/Home");
+        navigate("/");
+        window.location.reload()
     };
 
     function error(){

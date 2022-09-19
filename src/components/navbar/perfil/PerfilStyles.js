@@ -23,8 +23,8 @@ export const Container = styled.div`
     > svg {
     position: fixed;
     color: black;
-    width: 1.875rem;
-    height: 1.875rem;
+    width: 1rem;
+    height: 1rem;
     margin-top: 2rem;
     right: 2rem;
     cursor: pointer;

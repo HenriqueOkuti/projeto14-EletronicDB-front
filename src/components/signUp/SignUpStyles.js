@@ -14,6 +14,7 @@ const Formstyled = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    
     input{
         height: 45px;
         border: 1px solid #D5D5D5;

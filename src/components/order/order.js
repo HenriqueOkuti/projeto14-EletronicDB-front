@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { TailSpin } from 'react-loader-spinner';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
@@ -12,18 +13,29 @@ export default function Order() {
   const [placed, setPlaced] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const token = localStorage.getItem('token');
 
   const order = location.state?.order;
-
-  console.log(order);
+  useEffect(() => {
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+      body: order.list,
+    };
+    axios
+      .post('https://eletronicdb.herokuapp.com/checkout', config.body, config)
+      .then(() => setPlaced(!placed))
+      .catch(() => navigate('/checkout'));
+  }, []);
 
   if (placed) {
-    //insert into DB
-
-    //clean cart
-
-    //Then go back home
-    navigate('/');
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+      body: [],
+    };
+    axios
+      .put('https://eletronicdb.herokuapp.com/cart', config.body, config)
+      .then(() => navigate('/'))
+      .catch((event) => console.log(event));
   } else {
     return (
       <>

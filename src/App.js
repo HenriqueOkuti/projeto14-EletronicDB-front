@@ -3,11 +3,12 @@ import Order from './components/order/order';
 import React, { useState } from 'react';
 import Home from './components/home/Home';
 import SignIn from './components/signIn/SignIn';
-import SignUp from './components/signUp/signUp';
+import SignUp from './components/signUp/SignUp';
 import Cart from './components/cart/Cart';
 import Checkout from './components/checkout/Checkout';
 import Navbar from './components/sidebar/navbar/Navbar';
 import ContextUser from './Contexts/ContextUser';
+import styled from 'styled-components';
 
 import './shared/reset.css';
 import './App.css';
@@ -40,5 +41,9 @@ function App() {
     </ContextUser.Provider>
   );
 }
+
+const AllStyled = styled.div`
+  font-family: 'Raleway', sans-serif;
+`;
 
 export default App;

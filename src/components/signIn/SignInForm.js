@@ -1,17 +1,19 @@
 import { useContext } from "react";
 import ContextUser from "../../Contexts/ContextUser";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import SignInStyledForm from "./SignInStyles";
 
 export default function FormSignin(){
     const {email, setEmail} = useContext(ContextUser);
     const {password, setPassword} = useContext(ContextUser);
-    /*const  navigate = useNavigate();*/
+    const navigate = useNavigate();
 
     function handleForm(e){
         e.preventDefault();
     };
-    /*
+
     function sucess(res){
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("name", res.data.name);
@@ -21,18 +23,16 @@ export default function FormSignin(){
     function error(){
         alert("Por favor preencha os campos novamente");
     }; 
-    */
+
     function submit(){
         if (email !== ""  && password !== ""){
             const login = {
                 email,
 	            password
             };
-            console.log(login);
-            /*
-            const request = axios.post("http://localhost:5000/sign-in", login);
+            const request = axios.post("https://eletronicdb.herokuapp.com/sign-in", login);
             request.then((res)=> sucess(res));
-            request.catch(()=> error());*/
+            request.catch(()=> error());
         } else {
             alert("Por favor preencha os campos novamente");
         };
@@ -43,10 +43,10 @@ export default function FormSignin(){
     <form onSubmit={handleForm}>
         <div className="inputs">
         <div className="input">
-            <input type="email" onChange={(e)=> setEmail(e.target.value)} required  placeholder="E-mail" />
+            <input type="email" onChange={(e)=> setEmail(e.target.value)} required  placeholder="email" />
         </div>
         <div className="input" >
-            <input type="password" onChange={(e)=> setPassword(e.target.value)} required  placeholder="Senha" />
+            <input type="password" onChange={(e)=> setPassword(e.target.value)} required  placeholder="senha" />
         </div>  
         </div>
         <div>

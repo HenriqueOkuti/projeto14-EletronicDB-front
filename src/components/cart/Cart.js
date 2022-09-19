@@ -39,28 +39,37 @@ import { HiCheck, HiX } from 'react-icons/hi';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export default function Cart() {
   const [showprompt, setShowprompt] = useState([false]);
-  let [userProducts, setUserProducts] = useState(generateData());
+  let [userProducts, setUserProducts] = useState([]);
   const [total, setTotal] = useState(0);
   const [update, setUpdate] = useState(false);
   const [hasItems, setHasItems] = useState(false);
-
+  const token = localStorage.getItem('token');
   const navigate = useNavigate();
 
   //plug axios here:
   function getUserData() {
-    //  handleFailure()
-    handleSuccess();
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    axios
+      .get('https://eletronicdb.herokuapp.com/cart', config)
+      .then(handleSuccess)
+      .catch(handleFailure);
   }
 
   function handleSuccess(event) {
+    if (!event.data[0]) {
+      return;
+    }
     //Comment line bellow if event is non-null
-    setUserProducts(generateData);
+    //setUserProducts(generateData);
 
-    //if successfully:
-    //setUserProducts(event.data)
+    //if success:
+    setUserProducts(event.data[0].cart);
 
     setHasItems(!userProducts[0] ? true : searchIgnore());
     setTotal(calculateTotal(userProducts));
@@ -85,9 +94,25 @@ export default function Cart() {
     console.log(event);
   }
 
+  function updateData() {
+    if (!userProducts[0]) {
+      return;
+    }
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+      body: userProducts.filter((e) => (e.hasOwnProperty('ignore') ? '' : e)),
+    };
+    axios
+      .put('https://eletronicdb.herokuapp.com/cart', config.body, config)
+      .then(() => console.log('OK'))
+      .catch(handleFailure);
+  }
+
   useEffect(() => {
     getUserData();
   }, []);
+
+  useEffect(() => updateData(), [update, userProducts]);
 
   useEffect(() => {
     setHasItems(searchIgnore());
@@ -149,12 +174,6 @@ export default function Cart() {
             <HomeButton
               hasItems={true}
               onClick={() => {
-                console.log('Redirect CHECKOUT');
-                console.log(
-                  (userProducts = userProducts.filter((e) =>
-                    e.hasOwnProperty('ignore') ? 0 : e
-                  ))
-                );
                 navigate('/checkout', {
                   state: { list: userProducts, value: total },
                 });
@@ -223,14 +242,14 @@ function generateData() {
   return arrayNewProducts;
 }
 
-function RenderProduct({ product, key, setShowprompt, setUpdate, update }) {
+function RenderProduct({ product, setShowprompt, setUpdate, update }) {
   let [quantity, setQuantity] = useState(product.quantity);
   product.quantity = quantity;
 
   return (
     <ItemContainer>
       <ItemImage
-        src={`${product.image}`}
+        src={`${product.image_main}`}
         alt=''
         onClick={() => console.log('redirect to item')}
       ></ItemImage>
@@ -284,7 +303,7 @@ function promptDelete(product, userProducts, setShowprompt, setUserProducts) {
       <DeletePrompt>
         <DeleteText>Do you wish to remove</DeleteText>
         <DeleteItem>
-          <ItemImage src={product.image} alt='' />
+          <ItemImage src={product.image_main} alt='' />
           <ItemName>{product.name}</ItemName>
         </DeleteItem>
         <DeleteButtons>

@@ -17,12 +17,20 @@ export default function Home() {
   const [product, setProduct] = useState('');
   const [items, setItems] = useState([]);
   const token = localStorage.getItem('token');
+  const [pageType, setPageType] = useState('');
+  const params = useParams();
 
-  const { type } = useParams();
+  console.log(pageType);
 
-  if (type) {
-    setProduct(type);
-  }
+  useEffect(() => {
+    let type = params;
+
+    if (type) {
+      console.log(type);
+      setPageType(type.type);
+      setProduct(type.type);
+    }
+  }, [pageType]);
 
   useEffect(() => {
     const requisicao = axios.get('https://eletronicdb.herokuapp.com/mongo');
@@ -31,7 +39,23 @@ export default function Home() {
       setItems(res.data.slice(1, 200));
     });
     requisicao.catch((event) => console.log(event));
-  }, [product]);
+  }, [product, items]);
+
+  if (pageType) {
+    console.log(typeof items[0]?.type);
+    const TypeNumber = pageType
+      .split('')
+      .filter((e) => (Number(e) ? Number(e) : ''))
+      .join('');
+
+    const newitems = items.filter((e) => (e.type === TypeNumber ? e : ''));
+    console.log(newitems);
+    return (
+      <PageContainer>
+        <RenderCategories allProducts={newitems} />
+      </PageContainer>
+    );
+  }
 
   if (!items[0]) {
     return (
@@ -62,17 +86,18 @@ export default function Home() {
 
 function RenderCategories({ allProducts }) {
   const lengthAll = allProducts.length;
+  console.log(lengthAll);
   const CONST_20 = 20;
+  const CONST_50 = 50;
   const latestProducts = allProducts.slice(lengthAll - CONST_20);
+  const shouldRenderNew = lengthAll < CONST_50 ? false : true;
   const organizedList = sortTypes(allProducts);
-  console.log(organizedList);
-
   return (
     <>
       <div></div>
-      <RenderLatest />
+      {shouldRenderNew ? <RenderLatest latestProducts={latestProducts} /> : ''}
       {organizedList.map((e) => (
-        <RenderType productsType={e} />
+        <RenderType productsType={e} shouldHaveLimit={shouldRenderNew} />
       ))}
     </>
   );
@@ -94,18 +119,26 @@ function sortTypes(list) {
   return array;
 }
 
-function RenderLatest(latestProducts) {
-  return <></>;
+function RenderLatest({ latestProducts }) {
+  const LIMIT = 5;
+  const productsToRender = latestProducts.filter((e, i) => (i < LIMIT ? e : 0));
+  return (
+    <>
+      <TypeContainer>
+        Newest products
+        <RenderItems items={productsToRender} />
+      </TypeContainer>
+    </>
+  );
 }
 
-function RenderType({ productsType }) {
-  console.log(productsType);
-  const LIMIT = 5;
+function RenderType({ productsType, shouldHaveLimit }) {
+  const LIMIT = shouldHaveLimit ? 5 : productsType.length;
   const productsToRender = productsType.filter((e, i) => (i < LIMIT ? e : 0));
   return (
     <>
       <TypeContainer>
-        Produtos tipo {productsType[0].type}
+        Products Type {productsType[0].type}
         <RenderItems items={productsToRender} />
       </TypeContainer>
     </>
@@ -113,7 +146,6 @@ function RenderType({ productsType }) {
 }
 
 function RenderItems({ items }) {
-  console.log(items);
   return (
     <>
       <div></div>
@@ -145,6 +177,7 @@ function RenderItem({ product }) {
                 window.alert('Faça login para adicionar ao carrinho');
               } else {
                 console.log('add to cart: ', { ...product, quantity: 1 });
+                handleAddToCart({ ...product, quantity: 1 });
               }
             }}
           />
@@ -152,4 +185,16 @@ function RenderItem({ product }) {
       </ItemContainer>
     </>
   );
+}
+
+function handleAddToCart(product) {
+  const config = {
+    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+    body: product,
+  };
+  console.log(config);
+  axios
+    .post('https://eletronicdb.herokuapp.com/cart', config.body, config)
+    .then(() => window.alert('Item added to cart'))
+    .catch(() => window.alert('Could not add item to cart'));
 }

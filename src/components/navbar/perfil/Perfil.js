@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Container, Content} from './PerfilStyles'
 import { FaUser } from 'react-icons/fa'
 
@@ -13,13 +13,13 @@ const Perfil = ({ active, online, setOnline }) => {
         localStorage.removeItem('token');
         window.location.reload()
       }
-      active(false)
+
     }
 
 
   return (
     <Container perfil={active}> 
-        <FaUser onClick={closePerfil} />  
+        <FaUser onClick={()=>active(false)}/>  
       <Content>
         {online ? <PerfilItem path={"/"} Text="Log Out" closePerfil={closePerfil}/>:
         <>

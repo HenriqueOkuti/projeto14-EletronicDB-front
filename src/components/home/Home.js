@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 export default function Home(){
-    const[product, setProduct] = useState("");
+    /*const[product, setProduct] = useState("");
     const[items, setItems] = useState([]);
 
     const { type }= useParams();
@@ -19,7 +19,7 @@ export default function Home(){
 	//	requisicao.then(res => {
 	//		setItems(res.data.items);
 	//	});
-	//}, [product]);
+	//}, [product]);*/
 
 
     return(
